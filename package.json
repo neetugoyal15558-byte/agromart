@@ -1,0 +1,18 @@
+{
+  "name": "agromart-server",
+  "version": "1.0.0",
+  "description": "AgroMart e-commerce with Razorpay server integration and delivery app links",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "agromart",
+    "razorpay",
+    "ecommerce",
+    "fruits",
+    "vegetables"
+  ],
+  "author": "AgroMart Team",
+  "license": "ISC"
+}

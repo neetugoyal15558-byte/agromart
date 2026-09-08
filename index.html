@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroMart | Gen Z & Millennial Choice — Fresh Farming Products</title>
+  <meta name="description" content="AgroMart - fresh fruits, vegetables, seeds, fertilizers, farming tools and more.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+  <!-- Performance Optimization: Preconnect to external resources -->
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://checkout.razorpay.com">
+  <link rel="dns-prefetch" href="https://checkout-static-next.razorpay.com">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Splash Screen / Brand Intro Reveal -->
+<div id="splashScreen" class="splash-screen" role="dialog" aria-modal="true" aria-label="AgroMart Welcome Screen">
+  <div class="splash-container">
+    <div class="splash-logo-glow"></div>
+    <div class="splash-logo-icon">🌾</div>
+    <h1 class="splash-brand-name">Agro<span>Mart</span></h1>
+    <p class="splash-tagline">🔥 Gen Z & Millennial Choice is AgroMart — What's Yours?</p>
+    <div class="splash-loader-track">
+      <div class="splash-loader-bar"></div>
+    </div>
+    <div class="splash-status-text">Loading fresh farm products...</div>
+    <button type="button" class="splash-skip-btn" id="splashSkipBtn">Enter Store →</button>
+  </div>
+</div>
+
+<div class="top-banner">
+  <div class="container">
+    <span>🔥 <strong>Gen Z & Millennial Choice is AgroMart</strong> — What's Yours?</span>
+    <a href="#products" class="top-banner-link">Shop Trending Now →</a>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <div class="logo">🌾</div>
+      <div><strong>AgroMart</strong><small>Gen Z & Millennial Choice</small></div>
+    </a>
+    <button type="button" class="menu-btn" id="menuBtn">☰</button>
+    <nav id="mainNav">
+      <a href="#home">Home</a><a href="#products">Products</a><a href="#categories">Categories</a><a href="#fresh-produce">Fresh Produce</a>
+      <a href="#advantages" class="nav-highlight-link">✨ Why AgroMart</a>
+      <a href="#delivery-app">🛵 Delivery App</a>
+      <a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button type="button" class="account-btn" id="accountOpen">👤 <span id="accountLabel">Login</span></button>
+      <button type="button" class="cart-btn" id="cartOpen">🛒 <span id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="pill trending-pill"><span class="pulse-fire">🔥</span> Gen Z & Millennial Choice is AgroMart — What's Yours?</span>
+      <h1>Fresh from the farm.<br><span>Direct to your home.</span></h1>
+      <p>Shop fresh fruits, vegetables, seeds, fertilizers, tools and essential farming products at AgroMart.</p>
+      <div class="hero-buttons"><a class="primary-btn" href="#products">Shop Now →</a><a class="secondary-btn" href="#categories">Explore Categories</a></div>
+      <div class="trust"><span>✓ Fresh products</span><span>✓ Secure checkout</span><span>✓ Easy delivery</span></div>
+    </div>
+    <div class="hero-image-wrapper">
+      <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=900&auto=format&fit=crop&q=80" alt="Fresh Farm Produce Harvest" class="hero-real-img" loading="eager">
+      <div class="hero-floating-card top-badge">
+        <span class="badge-icon">🌿</span>
+        <div>
+          <strong>100% Organically Sourced</strong>
+          <small>Fresh from certified local farms</small>
+        </div>
+      </div>
+      <div class="hero-floating-card bottom-badge">
+        <span class="badge-icon">🚚</span>
+        <div>
+          <strong>Fast Farm-to-Door Delivery</strong>
+          <small>Same day harvest dispatch</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">SHOP BY CATEGORY</span><h2>Everything for your farm & kitchen</h2></div></div>
+    <div class="category-grid" id="categoryGrid"></div>
+  </div>
+</section>
+
+<section class="section produce-section" id="fresh-produce">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">FRESH PRODUCE</span>
+        <h2>Fruits & Vegetables</h2>
+        <p class="section-subtitle">Fresh everyday produce with prices shown in Indian rupees (₹).</p>
+      </div>
+      <div class="produce-head-actions">
+        <div class="produce-tabs">
+          <button type="button" class="produce-tab active" data-produce-filter="all">All Produce</button>
+          <button type="button" class="produce-tab" data-produce-filter="Fruits">Fresh Fruits</button>
+          <button type="button" class="produce-tab" data-produce-filter="Vegetables">Fresh Vegetables</button>
+        </div>
+        <button type="button" class="add-produce-btn" id="openAddProduceBtn" title="Add fresh fruit or vegetable item">
+          <span>🌿 ➕</span> Add Produce Item
+        </button>
+      </div>
+    </div>
+    <div class="produce-grid" id="produceGrid"></div>
+  </div>
+</section>
+
+<section class="section products-section" id="products">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">OUR PRODUCTS</span><h2>Fresh & popular products</h2></div><span class="price-note">Prices in ₹ • fresh produce generally per kg unless stated</span></div>
+    <div class="filters">
+      <input id="searchInput" type="search" placeholder="🔎 Search products...">
+      <select id="categoryFilter"><option value="all">All categories</option></select>
+      <select id="sortFilter"><option value="default">Sort: Recommended</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="rating">Top Rated</option></select>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="offer">
+  <div class="container offer-inner">
+    <div class="offer-content">
+      <span class="eyebrow">SPECIAL OFFER</span>
+      <h2>Get 10% off on orders above ₹2,000</h2>
+      <p>Use coupon code <b>AGRO10</b> at checkout for direct farm savings.</p>
+      <a href="#products" class="primary-btn">Start Shopping →</a>
+    </div>
+    <div class="offer-image-box">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80" alt="Fresh Farm Produce" class="offer-real-img" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="section promo-section" id="offers">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">DISCOUNTS & CASHBACK</span>
+        <h2>Smart savings for every order</h2>
+      </div>
+    </div>
+
+    <div class="promo-grid">
+      <div class="promo-card promo-card--highlight">
+        <span class="promo-label">Limited Time</span>
+        <h3>10% store discount</h3>
+        <p>Apply code <strong>AGRO10</strong> on all orders above ₹2,000 and save instantly at checkout.</p>
+      </div>
+
+      <div class="promo-card">
+        <span class="promo-label promo-label--success">Refer & Earn</span>
+        <h3>Invite a friend, get ₹150 cashback</h3>
+        <p>Share code <strong>FRIEND150</strong> with a friend. Once they complete their first purchase, you receive cashback.</p>
+        <button type="button" class="secondary-btn promo-copy-btn" id="copyReferralBtn">Copy referral code</button>
+      </div>
+
+      <div class="promo-card">
+        <span class="promo-label">Combo Deal</span>
+        <h3>Bundle & save more</h3>
+        <p>Buy any 3 or more farm essentials and unlock extra savings with code <strong>AGRO20</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div>
+      <span class="eyebrow">ABOUT AGROMART</span>
+      <h2>Helping farmers and families buy better.</h2>
+      <p>AgroMart brings farm essentials and fresh produce together in one simple online store.</p>
+      <div class="stats">
+        <div><b>100%</b><span>Quality focused</span></div>
+        <div><b>₹</b><span>Transparent pricing</span></div>
+        <div><b>24/7</b><span>Online shopping</span></div>
+      </div>
+    </div>
+    <div class="about-card-realistic">
+      <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&auto=format&fit=crop&q=80" alt="Farmers in field" class="about-real-img" loading="lazy">
+      <div class="about-overlay-info">
+        <h3>From Farm to Basket</h3>
+        <p>We source directly from responsible local farmers to deliver untouched freshness and genuine farm essentials.</p>
+        <span class="about-verified-badge">✓ 100% Naturally Grown & Tested</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission, Problems Resolved & Core Advantages Section -->
+<section class="section advantages-section" id="advantages">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="section-head text-center-head">
+      <div>
+        <span class="eyebrow">OUR MISSION & PLATFORM IMPACT</span>
+        <h2>Why AgroMart? Problems We Resolve & Our Core Advantages</h2>
+        <p class="section-subtitle-center">
+          Transforming India's agricultural ecosystem by connecting dedicated farmers directly with smart households—eliminating middlemen, providing 100% certified genuine agri-inputs, minimizing post-harvest food waste, and establishing radical price transparency in Indian Rupees (₹).
+        </p>
+      </div>
+    </div>
+
+    <!-- 1. The Problems AgroMart Resolves -->
+    <div class="problems-block">
+      <div class="block-header">
+        <span class="problem-tag">🛑 THE CHALLENGES WE RESOLVE</span>
+        <h3>Critical Problems in the Traditional Agri & Food Supply Chain</h3>
+        <p>Before AgroMart, both agricultural producers and everyday consumers were trapped in an inefficient, opaque, and exploitative marketplace.</p>
+      </div>
+
+      <div class="problems-grid">
+        <div class="problem-card">
+          <div class="problem-badge">01. Middlemen Exploitation</div>
+          <div class="problem-icon">📉</div>
+          <h4>Predatory Middlemen & Unfair Margins</h4>
+          <p>Traditional mandis involve 4 to 6 tiers of commission agents (arhtiyas, brokers, wholesalers, sub-dealers). Farmers receive barely <strong>20%–30%</strong> of retail value, while consumer bills are inflated up to <strong>300%</strong>.</p>
+          <div class="problem-metric">
+            <span>⚠️ Crisis:</span> Up to 70% of crop value lost to non-farming agents
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-badge">02. Food Spoilage</div>
+          <div class="problem-icon">🗑️</div>
+          <h4>Severe Post-Harvest Perishable Wastage</h4>
+          <p>Due to multi-day auction delays, lack of cold-chain aggregation, and sluggish transit, over <strong>30% of fresh fruits and vegetables</strong> rot before ever reaching a kitchen. This destroys farm profits and spikes consumer prices.</p>
+          <div class="problem-metric">
+            <span>⚠️ Crisis:</span> 30%+ perishable food wasted in transit
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-badge">03. Counterfeiting</div>
+          <div class="problem-icon">⚠️</div>
+          <h4>Counterfeit Seeds & Adulterated Inputs</h4>
+          <p>Smallholder farmers regularly fall victim to spurious seeds with low germination, chalk-mixed NPK fertilizers, and ineffective pesticides sold in unregulated rural shops, triggering devastating crop failure and debt traps.</p>
+          <div class="problem-metric">
+            <span>⚠️ Crisis:</span> Massive yield collapse & chronic farmer distress
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-badge">04. Price Opacity</div>
+          <div class="problem-icon">⚖️</div>
+          <h4>Opaque Pricing & Unfair Weighing Scales</h4>
+          <p>Farmers face closed-door bidding, arbitrary commission deductions, delayed clearance of payments, and manipulation in weighing scales at local mandis, with zero real-time market price visibility.</p>
+          <div class="problem-metric">
+            <span>⚠️ Crisis:</span> Zero transparent price discovery or receipts
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-badge">05. Chemical Preservatives</div>
+          <div class="problem-icon">🧪</div>
+          <h4>Artificially Ripened & Stale Produce</h4>
+          <p>Urban families unknowingly consume produce treated with hazardous artificial ripening chemicals (such as calcium carbide) and toxic wax coatings applied to mask days or weeks of stagnant warehouse decay.</p>
+          <div class="problem-metric">
+            <span>⚠️ Crisis:</span> Stripped nutritional value & health hazards
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-badge">06. Market Disconnect</div>
+          <div class="problem-icon">🚜</div>
+          <h4>Rural-Urban Disconnect for Agri Supplies</h4>
+          <p>Terrace gardeners and modern growers struggle to find genuine cocopeat blocks, micro-irrigation sets, and organic bio-fertilizers, while regional farmers lack a direct channel to sell premium harvest to city buyers.</p>
+          <div class="problem-metric">
+            <span>⚠️ Crisis:</span> Severe distribution friction for both sides
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. AgroMart Core Advantages -->
+    <div class="advantages-block">
+      <div class="block-header">
+        <span class="advantage-tag">✨ THE AGROMART ADVANTAGE</span>
+        <h3>How Our Direct Digital Ecosystem Solves Every Bottleneck</h3>
+        <p>A unified agricultural superstore engineered to guarantee fair earnings, untouched freshness, certified supplies, and honest value.</p>
+      </div>
+
+      <div class="advantages-grid">
+        <div class="advantage-card featured-advantage">
+          <div class="adv-pill">CORE VALUE</div>
+          <div class="adv-icon">🌾</div>
+          <h4>Direct Farm-to-Fork Model (0 Middlemen)</h4>
+          <p>We eliminate every commission agent and aggregator. Farmers earn <strong>35%–45% higher profits</strong> through direct farm-gate procurement, while households enjoy transparent wholesale-to-retail rates in Indian Rupees (₹).</p>
+          <ul class="adv-perk-list">
+            <li><span>✓</span> Direct digital payouts to growers without cuts</li>
+            <li><span>✓</span> Fair, guaranteed farm-gate purchasing</li>
+            <li><span>✓</span> Honest, affordable pricing for families</li>
+          </ul>
+        </div>
+
+        <div class="advantage-card">
+          <div class="adv-pill">QUALITY GUARANTEE</div>
+          <div class="adv-icon">🔬</div>
+          <h4>100% Certified & Tested Agri Inputs</h4>
+          <p>Every seed variety, organic fertilizer, bio-pesticide, and farming tool in our catalog is verified and batch-tested from certified agricultural institutions and authentic manufacturers.</p>
+          <ul class="adv-perk-list">
+            <li><span>✓</span> High-germination certified seed varieties</li>
+            <li><span>✓</span> Pure organic vermicompost, NPK, and bone meal</li>
+            <li><span>✓</span> Heavy-duty forged steel tools with warranties</li>
+          </ul>
+        </div>
+
+        <div class="advantage-card">
+          <div class="adv-pill">EXPRESS DISPATCH</div>
+          <div class="adv-icon">⚡</div>
+          <h4>Hyperlocal 15–30 Min Express Farm Delivery</h4>
+          <p>Powered by our AgroDelivery rider network, fresh produce is harvested at dawn and brought straight to your doorstep in minutes. Minimized transit keeps post-harvest wastage under <strong>2%</strong>.</p>
+          <ul class="adv-perk-list">
+            <li><span>✓</span> Harvested on-demand, never sitting in mandis</li>
+            <li><span>✓</span> Live GPS rider tracking and direct driver contact</li>
+            <li><span>✓</span> Untouched natural aroma, crispness, and vitamins</li>
+          </ul>
+        </div>
+
+        <div class="advantage-card">
+          <div class="adv-pill">FINANCIAL CLARITY</div>
+          <div class="adv-icon">💳</div>
+          <h4>Radical Price Transparency & Instant Invoices</h4>
+          <p>All items have crystal-clear prices shown per kg or pack with visible discounts. Supports seamless digital checkout via Razorpay, UPI QR (PhonePe, GPay, Paytm), debit/credit cards, and COD.</p>
+          <ul class="adv-perk-list">
+            <li><span>✓</span> Instant digital invoices generated upon order</li>
+            <li><span>✓</span> Automated promotional coupons (e.g. AGRO10)</li>
+            <li><span>✓</span> Secure 256-bit encrypted payment gateway</li>
+          </ul>
+        </div>
+
+        <div class="advantage-card">
+          <div class="adv-pill">SUSTAINABILITY</div>
+          <div class="adv-icon">🌱</div>
+          <h4>Regenerative & Eco-Friendly Agriculture</h4>
+          <p>We actively champion soil health and water conservation by supplying bio-consortia, Panchagavya, Jeevamrut, herbal pest repellents, and water-saving precision drip irrigation kits.</p>
+          <ul class="adv-perk-list">
+            <li><span>✓</span> 100% natural, chemical-free bio-pesticides</li>
+            <li><span>✓</span> Up to 60% water savings with micro-irrigation kits</li>
+            <li><span>✓</span> Restoration of beneficial soil microbial biodiversity</li>
+          </ul>
+        </div>
+
+        <div class="advantage-card">
+          <div class="adv-pill">EMPOWERMENT</div>
+          <div class="adv-icon">🤝</div>
+          <h4>Direct Producer Listing Module</h4>
+          <p>Any local farmer or grower can directly list fresh harvest on AgroMart in 60 seconds through our interactive "Add Produce Item" portal, immediately accessing thousands of consumers.</p>
+          <ul class="adv-perk-list">
+            <li><span>✓</span> Quick online listing with price and stock controls</li>
+            <li><span>✓</span> Direct connection between growers and local buyers</li>
+            <li><span>✓</span> Guaranteed market access for seasonal crops</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Side-by-Side Comparison Matrix -->
+    <div class="comparison-block">
+      <div class="block-header">
+        <span class="compare-tag">📊 TRANSPARENCY MATRIX</span>
+        <h3>Traditional Agri Supply Chain vs. The AgroMart Way</h3>
+        <p>A direct head-to-head comparison demonstrating why farmers and families choose AgroMart.</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th style="width:28%">Key Parameter</th>
+              <th class="col-trad" style="width:36%">❌ Traditional Mandi Model</th>
+              <th class="col-agro" style="width:36%">✅ The AgroMart Way</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Middlemen / Intermediaries</strong></td>
+              <td><span class="comp-cross">4 to 6 middle layers</span> (Agents, Wholesalers, Sub-dealers, Brokers)</td>
+              <td><span class="comp-check">Zero Middlemen</span> (Direct farm-gate to consumer delivery)</td>
+            </tr>
+            <tr>
+              <td><strong>Farmer Payout Share</strong></td>
+              <td><span class="comp-cross">20% – 30%</span> of consumer price paid to cultivator</td>
+              <td><span class="comp-check">70% – 80% Direct Value</span> returned straight to farmers</td>
+            </tr>
+            <tr>
+              <td><strong>Transit Time from Field</strong></td>
+              <td><span class="comp-cross">3 to 5 Days</span> through wholesale yards and distribution depots</td>
+              <td><span class="comp-check">Same-Day / 15–30 Min</span> instant hyperlocal harvest delivery</td>
+            </tr>
+            <tr>
+              <td><strong>Produce Spoilage Rate</strong></td>
+              <td><span class="comp-cross">Over 30% Wastage</span> due to multiple handoffs and delays</td>
+              <td><span class="comp-check">Less than 2% Waste</span> through precision on-demand dispatch</td>
+            </tr>
+            <tr>
+              <td><strong>Agri Input Authenticity</strong></td>
+              <td><span class="comp-cross">High Counterfeit Risk</span> in unregulated village markets</td>
+              <td><span class="comp-check">100% Lab Tested & Verified</span> genuine seeds, fertilizers, and tools</td>
+            </tr>
+            <tr>
+              <td><strong>Produce Treatment</strong></td>
+              <td><span class="comp-cross">Chemical Ripening Agents</span> (Carbide) and wax gloss sprays</td>
+              <td><span class="comp-check">100% Naturally Ripened</span>, pesticide-residue tested, fresh</td>
+            </tr>
+            <tr>
+              <td><strong>Pricing Transparency</strong></td>
+              <td><span class="comp-cross">Opaque bidding</span>, hidden mandi cess, informal deductions</td>
+              <td><span class="comp-check">Clear Price in ₹</span>, live weight display, automated invoices</td>
+            </tr>
+            <tr>
+              <td><strong>Payment Settlement</strong></td>
+              <td><span class="comp-cross">Delayed cash cycles</span>, weeks of credit debt for farmers</td>
+              <td><span class="comp-check">Instant Digital Payouts</span> via UPI, Razorpay, Cards & COD</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section reviews">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">CUSTOMER REVIEWS</span>
+        <h2>What shoppers say</h2>
+      </div>
+    </div>
+    <div class="review-grid">
+      <article class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>“Fresh vegetables delivered promptly. The UPI QR code payment at checkout worked smoothly with my PhonePe app.”</p>
+        <div class="reviewer-profile">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" alt="Rahul Verma" class="reviewer-avatar" loading="lazy">
+          <div>
+            <b>Rahul Verma</b>
+            <small>Verified Buyer • Pune</small>
+          </div>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>“High germination seeds and organic compost. The pricing in ₹ is transparent and card payment was seamless.”</p>
+        <div class="reviewer-profile">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" alt="Priya Sharma" class="reviewer-avatar" loading="lazy">
+          <div>
+            <b>Priya Sharma</b>
+            <small>Verified Buyer • Nashik</small>
+          </div>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>“The fresh apples, mangoes, and potatoes were top quality. The invoice receipt was generated immediately!”</p>
+        <div class="reviewer-profile">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" alt="Amit Patel" class="reviewer-avatar" loading="lazy">
+          <div>
+            <b>Amit Patel</b>
+            <small>Verified Buyer • Ahmedabad</small>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section delivery-app-section" id="delivery-app">
+  <div class="container">
+    <div class="delivery-app-card">
+      <div class="delivery-app-content">
+        <span class="delivery-pill">🛵 HYPERLOCAL FARM DELIVERY</span>
+        <h2>Get 15–30 Min Fresh Farm Delivery<br><span>On the AgroDelivery Partner App</span></h2>
+        <p>Order fresh fruits, vegetables, seeds, and supplies directly with live rider GPS tracking, direct driver calling, and contactless delivery right to your door.</p>
+        
+        <div class="delivery-perks-grid">
+          <div class="perk-item">
+            <span class="perk-icon">⚡</span>
+            <div>
+              <strong>15–30 Min Express</strong>
+              <small>Harvested today, delivered in minutes</small>
+            </div>
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon">📍</span>
+            <div>
+              <strong>Live GPS Tracking</strong>
+              <small>Watch rider arrival on live map</small>
+            </div>
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon">❄️</span>
+            <div>
+              <strong>Fresh Insulated Bags</strong>
+              <small>Zero heat or transit damage</small>
+            </div>
+          </div>
+          <div class="perk-item">
+            <span class="perk-icon">💳</span>
+            <div>
+              <strong>Razorpay & UPI Built-in</strong>
+              <small>1-tap seamless contactless checkout</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="delivery-download-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.agromart.delivery" target="_blank" rel="noopener" class="store-badge-btn google-play-btn">
+            <span class="store-icon">▶</span>
+            <div class="store-text">
+              <small>GET IT ON</small>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+
+          <a href="https://apps.apple.com/app/agromart-delivery/id123456789" target="_blank" rel="noopener" class="store-badge-btn app-store-btn">
+            <span class="store-icon"></span>
+            <div class="store-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+
+          <button type="button" class="store-badge-btn qr-download-btn" id="openAppQrModalBtn">
+            <span class="store-icon">📱</span>
+            <div class="store-text">
+              <small>Scan Mobile</small>
+              <strong>QR Code</strong>
+            </div>
+          </button>
+        </div>
+
+        <div class="delivery-partner-note">
+          <span>Are you a driver?</span>
+          <button type="button" class="rider-join-link" id="joinRiderBtn">Join as an AgroDelivery Partner & Earn ₹30,000/mo →</button>
+        </div>
+      </div>
+
+      <div class="delivery-app-visual">
+        <div class="delivery-phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-header">
+              <div class="phone-logo">🌾 AgroDelivery</div>
+              <span class="phone-badge">Live Tracker</span>
+            </div>
+            <div class="phone-map-mock">
+              <div class="map-grid-lines"></div>
+              <div class="map-route-path"></div>
+              <div class="map-hub-pin">🌱 Farm Hub</div>
+              <div class="map-rider-pin pulse-animation">🛵 Rider (2.1 km)</div>
+              <div class="map-home-pin">🏠 Your Home</div>
+            </div>
+            <div class="phone-rider-card">
+              <div class="rider-avatar">🛵</div>
+              <div class="rider-meta">
+                <b>Ramesh Kumar</b>
+                <small>4.9 ★ • Electric Delivery Van</small>
+              </div>
+              <span class="rider-eta">14 mins</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact"><div class="container contact-card"><div><span class="eyebrow">CONTACT</span><h2>Need help?</h2><p>Send us your question and our team will get back to you.</p></div><form id="contactForm"><input id="contactName" placeholder="Your name" required><input id="contactEmail" type="email" placeholder="Email" required><textarea id="contactMessage" placeholder="Your message" required></textarea><button class="primary-btn" type="submit">Send Message</button></form></div></section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="brand">
+      <div class="logo">🌾</div>
+      <div><strong>AgroMart</strong><small>Fresh Farming Products</small></div>
+    </div>
+    <div class="footer-app-links">
+      <span>Get the Delivery App:</span>
+      <a href="https://play.google.com/store/apps/details?id=com.agromart.delivery" target="_blank" rel="noopener">Google Play</a>
+      <span>•</span>
+      <a href="https://apps.apple.com/app/agromart-delivery/id123456789" target="_blank" rel="noopener">App Store</a>
+      <span>•</span>
+      <button type="button" class="footer-qr-link" id="footerQrBtn">Scan App QR</button>
+    </div>
+    <p>© 2026 AgroMart • <strong>Gen Z & Millennial Choice is AgroMart — What's Yours?</strong> • Official Razorpay Gateway Integrated.</p>
+  </div>
+</footer>
+
+<!-- Cart -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="drawer-head"><h2>Your Cart</h2><button data-close="cart">×</button></div>
+  <div id="cartItems"></div>
+  <div class="cart-summary"><div><span>Subtotal</span><b id="cartSubtotal">₹0</b></div><div><span>Discount</span><b id="cartDiscount">₹0</b></div><div><span>Delivery</span><b id="cartDelivery">₹50</b></div><hr><div class="total"><span>Total</span><b id="cartTotal">₹0</b></div><button class="primary-btn full-btn" id="checkoutBtn">Proceed to Checkout</button></div>
+</aside>
+
+<!-- Product modal -->
+<div class="modal" id="productModal"><div class="modal-overlay" data-close="product"></div><div class="modal-card"><button class="modal-close" data-close="product">×</button><div id="productDetails"></div></div></div>
+
+<!-- Checkout -->
+<div class="modal" id="checkoutModal"><div class="modal-overlay" data-close="checkout"></div><div class="modal-card checkout-card"><button class="modal-close" data-close="checkout">×</button><h2>Checkout</h2><p class="muted">Complete your delivery and payment details.</p>
+<form id="checkoutForm">
+  <div class="form-grid"><label>Name<input id="checkoutName" required></label><label>Mobile<input id="checkoutMobile" pattern="[0-9]{10}" required></label></div>
+  <div class="form-grid"><label>Gmail ID<input id="checkoutEmail" type="email" required></label><label>PIN Code<input id="checkoutPin" pattern="[0-9]{6}" required></label></div>
+  <label>Address<textarea id="checkoutAddress" required></textarea></label>
+  <div class="form-grid"><label>City<input id="checkoutCity" required></label><label>State<input id="checkoutState" required></label></div>
+  <label>Delivery <select id="deliverySelect"><option value="50">Standard Delivery — ₹50</option><option value="120">Express Delivery — ₹120</option></select></label>
+
+  <div class="promo-box">
+    <div class="section-title-sm">
+      <span>🎁</span>
+      <div>
+        <strong>Discount & Referral Code</strong>
+        <small>Use AGRO10, AGRO20 or FRIEND150 to reduce delivery + order cost</small>
+      </div>
+    </div>
+    <div class="promo-input-row">
+      <input id="promoCodeInput" type="text" placeholder="Enter promo / referral code" value="">
+      <button type="button" class="secondary-btn btn-sm" id="applyPromoBtn">Apply</button>
+    </div>
+  </div>
+
+  <div class="checkout-payment-section">
+    <div class="section-title-sm">
+      <span>💳</span>
+      <div>
+        <strong>Select Payment Method</strong>
+        <small>100% Safe & Secure Payments</small>
+      </div>
+    </div>
+
+    <input type="hidden" id="paymentMethod" value="UPI">
+
+    <div class="pay-method-tabs" id="paymentMethodsTabs">
+      <button type="button" class="pay-tab" data-method="Razorpay">
+        <div class="pay-tab-icon">⚡</div>
+        <div class="pay-tab-text">
+          <strong>Razorpay</strong>
+          <small>UPI, Cards, Banks</small>
+        </div>
+        <span class="pay-tag rzp-tag">Server Live</span>
+      </button>
+
+      <button type="button" class="pay-tab active" data-method="UPI">
+        <div class="pay-tab-icon">⚡</div>
+        <div class="pay-tab-text">
+          <strong>UPI</strong>
+          <small>GPay, PhonePe, QR</small>
+        </div>
+        <span class="pay-tag popular">Popular</span>
+      </button>
+
+      <button type="button" class="pay-tab" data-method="Card">
+        <div class="pay-tab-icon">💳</div>
+        <div class="pay-tab-text">
+          <strong>Cards</strong>
+          <small>Visa, RuPay, Master</small>
+        </div>
+      </button>
+
+      <button type="button" class="pay-tab" data-method="NetBanking">
+        <div class="pay-tab-icon">🏛️</div>
+        <div class="pay-tab-text">
+          <strong>Net Banking</strong>
+          <small>SBI, HDFC, ICICI...</small>
+        </div>
+      </button>
+
+      <button type="button" class="pay-tab" data-method="Wallet">
+        <div class="pay-tab-icon">👛</div>
+        <div class="pay-tab-text">
+          <strong>Wallets</strong>
+          <small>Paytm, Amazon Pay</small>
+        </div>
+      </button>
+
+      <button type="button" class="pay-tab" data-method="COD">
+        <div class="pay-tab-icon">💵</div>
+        <div class="pay-tab-text">
+          <strong>Cash on Delivery</strong>
+          <small>Pay at doorstep</small>
+        </div>
+      </button>
+    </div>
+
+    <!-- Payment Sub-Panels -->
+    <div class="pay-panels" id="paymentPanels">
+      <!-- Razorpay Panel -->
+      <div class="pay-panel hidden" id="panel-Razorpay">
+        <div class="razorpay-server-status" id="razorpayServerStatusBox">
+          <span class="status-indicator-dot online" id="razorpayStatusDot"></span>
+          <div>
+            <strong id="razorpayStatusTitle">Razorpay Gateway Server Online</strong>
+            <small id="razorpayStatusSubtitle">http://localhost:3000 • Connected & Ready</small>
+          </div>
+          <button type="button" class="test-key-toggle-btn" id="toggleRazorpayConfigBtn" title="Razorpay Settings">⚙️ Config</button>
+        </div>
+
+        <div class="razorpay-config-box hidden" id="razorpayConfigBox">
+          <label>Razorpay Key ID
+            <input id="razorpayCustomKeyInput" placeholder="rzp_test_... or custom key" value="rzp_test_AgroMartDemo2026">
+          </label>
+          <button type="button" class="secondary-btn btn-sm" id="saveRazorpayKeyBtn">Update Key</button>
+        </div>
+
+        <div class="razorpay-benefits-card">
+          <div class="razorpay-logo-badge">
+            <span class="rzp-icon">⚡</span>
+            <div>
+              <strong>Official Razorpay Checkout</strong>
+              <small>256-Bit Bank Grade SSL • RBI Tokenized</small>
+            </div>
+          </div>
+          <p>Pay smoothly via Razorpay popup dialog with all Indian payment modes:</p>
+          <div class="razorpay-method-badges">
+            <span class="rzp-chip">⚡ Google Pay</span>
+            <span class="rzp-chip">⚡ PhonePe</span>
+            <span class="rzp-chip">⚡ Paytm UPI</span>
+            <span class="rzp-chip">💳 RuPay / Visa / Master</span>
+            <span class="rzp-chip">🏛️ 50+ Banks NetBanking</span>
+            <span class="rzp-chip">👛 Wallets</span>
+            <span class="rzp-chip">⏱️ PayLater</span>
+          </div>
+        </div>
+
+        <div class="razorpay-cta-wrap">
+          <button type="button" class="primary-btn razorpay-direct-btn" id="razorpayDirectBtn">
+            ⚡ Pay <span id="razorpayBtnAmount">₹0</span> via Razorpay
+          </button>
+          <small class="muted">Instant verified order with AgroMart Node server</small>
+        </div>
+      </div>
+      <!-- UPI Panel -->
+      <div class="pay-panel active" id="panel-UPI">
+        <div class="upi-subtabs">
+          <button type="button" class="upi-subtab active" data-upimode="qr">📱 Scan QR Code</button>
+          <button type="button" class="upi-subtab" data-upimode="apps">⚡ UPI Apps</button>
+          <button type="button" class="upi-subtab" data-upimode="id">✍️ Enter UPI ID</button>
+        </div>
+
+        <!-- QR View -->
+        <div class="upi-view" id="upiViewQr">
+          <div class="qr-box-wrap">
+            <div class="qr-visual">
+              <div class="qr-scan-bar"></div>
+              <div id="upiRealQrCode" class="qr-holder"></div>
+            </div>
+            <div class="qr-details">
+              <p>Scan with any UPI application (Google Pay, PhonePe, Paytm, BHIM)</p>
+              <div class="qr-amount-box">Amount to Pay: <b id="qrTotalDisplay">₹0</b></div>
+              <div class="qr-upi-id-box">
+                <span>UPI ID: <b id="agromartUpiId">agromart.fresh@okhdfcbank</b></span>
+                <button type="button" class="copy-upi-btn" id="copyUpiBtn" title="Copy UPI ID">📋 Copy</button>
+              </div>
+              <div class="qr-expiry-timer">⏱️ QR valid for: <strong id="qrTimer">04:59</strong></div>
+              <div class="upi-partners-badge">
+                <span class="upi-badge-chip">Google Pay</span>
+                <span class="upi-badge-chip">PhonePe</span>
+                <span class="upi-badge-chip">Paytm</span>
+                <span class="upi-badge-chip">BHIM</span>
+              </div>
+              <div class="qr-action-row">
+                <button type="button" class="primary-btn qr-pay-btn" id="qrConfirmPaidBtn">
+                  ✓ I Have Scanned & Paid
+                </button>
+                <a id="qrOpenUpiApp" href="upi://pay?pa=agromart.fresh@okhdfcbank&pn=AgroMart%20Fresh&cu=INR" class="secondary-btn qr-open-btn">
+                  📱 Open in UPI App
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apps View -->
+        <div class="upi-view hidden" id="upiViewApps">
+          <p class="panel-desc">Select your installed UPI app to pay directly:</p>
+          <div class="upi-apps-grid">
+            <label class="upi-app-card active">
+              <input type="radio" name="upiAppChoice" value="Google Pay" checked>
+              <div class="upi-app-icon gpay-icon">G</div>
+              <div>
+                <b>Google Pay</b>
+                <small>Instant & Safe</small>
+              </div>
+            </label>
+            <label class="upi-app-card">
+              <input type="radio" name="upiAppChoice" value="PhonePe">
+              <div class="upi-app-icon phonepe-icon">पे</div>
+              <div>
+                <b>PhonePe</b>
+                <small>Direct UPI</small>
+              </div>
+            </label>
+            <label class="upi-app-card">
+              <input type="radio" name="upiAppChoice" value="Paytm">
+              <div class="upi-app-icon paytm-icon">Pt</div>
+              <div>
+                <b>Paytm UPI</b>
+                <small>Instant Payment</small>
+              </div>
+            </label>
+            <label class="upi-app-card">
+              <input type="radio" name="upiAppChoice" value="BHIM UPI">
+              <div class="upi-app-icon bhim-icon">🇮🇳</div>
+              <div>
+                <b>BHIM UPI</b>
+                <small>Govt of India</small>
+              </div>
+            </label>
+          </div>
+          <label style="margin-top:10px;">Registered Mobile Number for App
+            <input id="upiMobileInput" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric">
+          </label>
+        </div>
+
+        <!-- UPI ID View -->
+        <div class="upi-view hidden" id="upiViewId">
+          <label>Virtual Payment Address (UPI ID)
+            <div class="vpa-input-box">
+              <input id="upiIdField" placeholder="example@okhdfcbank or 9876543210@paytm">
+              <button type="button" class="verify-vpa-btn" id="verifyUpiBtn">Verify ID</button>
+            </div>
+          </label>
+          <div class="vpa-status" id="vpaStatus"></div>
+          <div class="vpa-quick-chips">
+            <span class="vpa-chip" data-vpa="@okhdfcbank">@okhdfcbank</span>
+            <span class="vpa-chip" data-vpa="@okicici">@okicici</span>
+            <span class="vpa-chip" data-vpa="@oksbi">@oksbi</span>
+            <span class="vpa-chip" data-vpa="@paytm">@paytm</span>
+            <span class="vpa-chip" data-vpa="@ybl">@ybl</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Panel -->
+      <div class="pay-panel hidden" id="panel-Card">
+        <div class="card-preview-container">
+          <div class="live-credit-card" id="liveCreditCard">
+            <div class="card-top-row">
+              <div class="card-emv-chip"></div>
+              <div class="card-network-badge" id="cardNetworkBadge">RUPAY</div>
+            </div>
+            <div class="card-number-live" id="cardNumLive">•••• •••• •••• ••••</div>
+            <div class="card-bottom-row">
+              <div>
+                <div class="card-subhead">CARD HOLDER</div>
+                <div class="card-name-live" id="cardNameLive">YOUR NAME</div>
+              </div>
+              <div>
+                <div class="card-subhead">EXPIRES</div>
+                <div class="card-exp-live" id="cardExpLive">MM/YY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-fields">
+          <label>Card Number
+            <div class="input-with-icon">
+              <input id="cardNumber" placeholder="4532 •••• •••• 8910" maxlength="19" inputmode="numeric">
+              <span class="card-indicator" id="cardIndicator">💳</span>
+            </div>
+          </label>
+          <label>Cardholder Name
+            <input id="cardName" placeholder="Full name as printed on card">
+          </label>
+          <div class="form-grid">
+            <label>Expiry Date
+              <input id="cardExpiry" placeholder="MM/YY" maxlength="5" inputmode="numeric">
+            </label>
+            <label>CVV / CVC
+              <input id="cardCvv" type="password" placeholder="•••" maxlength="4" inputmode="numeric">
+            </label>
+          </div>
+          <label class="save-card-toggle">
+            <input type="checkbox" id="saveCardOption" checked>
+            <span>Save card securely for faster checkout (RBI tokenized)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Net Banking Panel -->
+      <div class="pay-panel hidden" id="panel-NetBanking">
+        <p class="panel-desc">Select from Top Indian Banks:</p>
+        <div class="bank-chips-grid">
+          <label class="bank-card active">
+            <input type="radio" name="bankSelection" value="State Bank of India" checked>
+            <span class="bank-logo sbi">SBI</span>
+            <b>State Bank of India</b>
+          </label>
+          <label class="bank-card">
+            <input type="radio" name="bankSelection" value="HDFC Bank">
+            <span class="bank-logo hdfc">HDFC</span>
+            <b>HDFC Bank</b>
+          </label>
+          <label class="bank-card">
+            <input type="radio" name="bankSelection" value="ICICI Bank">
+            <span class="bank-logo icici">ICICI</span>
+            <b>ICICI Bank</b>
+          </label>
+          <label class="bank-card">
+            <input type="radio" name="bankSelection" value="Axis Bank">
+            <span class="bank-logo axis">AXIS</span>
+            <b>Axis Bank</b>
+          </label>
+          <label class="bank-card">
+            <input type="radio" name="bankSelection" value="Punjab National Bank">
+            <span class="bank-logo pnb">PNB</span>
+            <b>Punjab National Bank</b>
+          </label>
+          <label class="bank-card">
+            <input type="radio" name="bankSelection" value="Bank of Baroda">
+            <span class="bank-logo bob">BOB</span>
+            <b>Bank of Baroda</b>
+          </label>
+        </div>
+
+        <label style="margin-top:14px;">Or Select Other Bank
+          <select id="otherBanksSelect">
+            <option value="">-- Choose from 40+ other Indian Banks --</option>
+            <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+            <option value="Canara Bank">Canara Bank</option>
+            <option value="Union Bank of India">Union Bank of India</option>
+            <option value="IndusInd Bank">IndusInd Bank</option>
+            <option value="Yes Bank">Yes Bank</option>
+            <option value="IDBI Bank">IDBI Bank</option>
+            <option value="Federal Bank">Federal Bank</option>
+            <option value="Indian Bank">Indian Bank</option>
+            <option value="Central Bank of India">Central Bank of India</option>
+            <option value="Bank of India">Bank of India</option>
+            <option value="RBL Bank">RBL Bank</option>
+            <option value="AU Small Finance Bank">AU Small Finance Bank</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Wallets Panel -->
+      <div class="pay-panel hidden" id="panel-Wallet">
+        <p class="panel-desc">Pay directly using your digital wallet:</p>
+        <div class="wallets-grid">
+          <label class="wallet-option active">
+            <input type="radio" name="walletApp" value="Paytm Wallet" checked>
+            <div class="wallet-logo paytm-bg">Pt</div>
+            <div class="wallet-info">
+              <b>Paytm Wallet</b>
+              <small>Instant 1-click payment</small>
+            </div>
+            <div class="wallet-avail">Bal: ₹2,450</div>
+          </label>
+          <label class="wallet-option">
+            <input type="radio" name="walletApp" value="PhonePe Wallet">
+            <div class="wallet-logo phonepe-bg">पे</div>
+            <div class="wallet-info">
+              <b>PhonePe Wallet</b>
+              <small>Auto debit supported</small>
+            </div>
+            <div class="wallet-avail">Bal: ₹1,820</div>
+          </label>
+          <label class="wallet-option">
+            <input type="radio" name="walletApp" value="Amazon Pay Balance">
+            <div class="wallet-logo amazon-bg">a</div>
+            <div class="wallet-info">
+              <b>Amazon Pay Balance</b>
+              <small>Earn cashback & points</small>
+            </div>
+            <div class="wallet-avail">Bal: ₹3,100</div>
+          </label>
+          <label class="wallet-option">
+            <input type="radio" name="walletApp" value="MobiKwik">
+            <div class="wallet-logo mobikwik-bg">M</div>
+            <div class="wallet-info">
+              <b>MobiKwik Wallet</b>
+              <small>Instant SuperCash checkout</small>
+            </div>
+            <div class="wallet-avail">Bal: ₹750</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Cash on Delivery Panel -->
+      <div class="pay-panel hidden" id="panel-COD">
+        <div class="cod-infobox">
+          <div class="cod-icon-big">📦 💵</div>
+          <div>
+            <b>Cash / UPI on Delivery</b>
+            <p>Pay comfortably using Cash or any UPI scanner to our delivery partner when your farm-fresh package reaches your doorstep.</p>
+          </div>
+        </div>
+        <div class="cod-captcha-group">
+          <label>Human Verification Code
+            <div class="captcha-input-row">
+              <div class="captcha-badge-code" id="codCaptchaBadge">5839</div>
+              <button type="button" class="captcha-reload-btn" id="reloadCaptchaBtn" title="Get new code">🔄</button>
+              <input id="codCaptchaInput" placeholder="Enter code" maxlength="4" inputmode="numeric">
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security Badges -->
+    <div class="trust-security-row">
+      <span>🔒 256-Bit SSL Encrypted</span>
+      <span>🛡️ PCI-DSS Level 1</span>
+      <span>🇮🇳 RBI Authorized</span>
+      <span>🌾 100% Quality Guaranteed</span>
+    </div>
+  </div>
+
+  <div class="order-total">Order Total: <b id="checkoutTotal">₹0</b></div>
+  <button class="primary-btn full-btn" type="submit" id="placeOrderBtn">Confirm & Place Order</button>
+</form></div></div>
+
+<!-- Payment Processing Gateway Modal -->
+<div class="modal" id="paymentProcessingModal">
+  <div class="modal-overlay"></div>
+  <div class="modal-card processing-card">
+    <div class="processing-spinner">
+      <div class="spinner-ring"></div>
+      <div class="spinner-icon">🔒</div>
+    </div>
+    <h3 id="processingTitle">Connecting to Secure Gateway...</h3>
+    <p class="processing-desc" id="processingDesc">Please do not refresh or close this window while we securely authorize your payment.</p>
+    <div class="processing-steps">
+      <div class="proc-step done" id="step1">✓ Security Verification</div>
+      <div class="proc-step active" id="step2">⏳ Authorizing with Bank / UPI</div>
+      <div class="proc-step" id="step3">○ Confirming Order Details</div>
+    </div>
+  </div>
+</div>
+
+<!-- Order Confirmation / Success Modal -->
+<div class="modal" id="orderSuccessModal">
+  <div class="modal-overlay" data-close="orderSuccess"></div>
+  <div class="modal-card order-success-card">
+    <button class="modal-close" data-close="orderSuccess">×</button>
+    <div class="success-banner">
+      <div class="success-checkmark">✓</div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Thank you for choosing <b>AgroMart</b>. Your farm products are being prepared for dispatch.</p>
+    </div>
+
+    <div class="invoice-container" id="invoiceReceipt">
+      <div class="invoice-header">
+        <div>
+          <div class="invoice-brand">🌾 AgroMart</div>
+          <small class="muted">Fresh Farming Products</small>
+        </div>
+        <div class="invoice-meta">
+          <div><b>Order ID:</b> <span id="receiptOrderId">AM-829104</span></div>
+          <div><b>Date:</b> <span id="receiptDate">07 Sep 2026</span></div>
+          <div><b>Status:</b> <span class="badge-paid" id="receiptStatus">PAID</span></div>
+        </div>
+      </div>
+
+      <hr class="invoice-divider">
+
+      <div class="invoice-two-col">
+        <div>
+          <span class="eyebrow">DELIVERY ADDRESS</span>
+          <p id="receiptAddress"><strong>Ramesh Kumar</strong><br>123 Farm Road, Sector 4<br>Pune, Maharashtra - 411001<br>📱 +91 9876543210</p>
+        </div>
+        <div>
+          <span class="eyebrow">PAYMENT METHOD</span>
+          <p id="receiptPayment"><strong>UPI Payment</strong><br>GPay: ramesh@okhdfcbank<br><small class="muted">Transaction ID: TXN-491823901</small></p>
+          <span class="eyebrow">ESTIMATED DELIVERY</span>
+          <p id="receiptEstDelivery">Tomorrow, between 9:00 AM - 2:00 PM</p>
+        </div>
+      </div>
+
+      <div class="invoice-items-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th style="text-align:center;">Qty</th>
+              <th style="text-align:right;">Price</th>
+              <th style="text-align:right;">Total</th>
+            </tr>
+          </thead>
+          <tbody id="receiptItemsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="receipt-bill-summary">
+        <div><span>Subtotal</span><b id="receiptSubtotal">₹0</b></div>
+        <div><span>Discount</span><b id="receiptDiscount">-₹0</b></div>
+        <div><span>Delivery Charges</span><b id="receiptDelivery">₹50</b></div>
+        <hr>
+        <div class="receipt-grand-total"><span>Grand Total Paid</span><b id="receiptGrandTotal">₹0</b></div>
+      </div>
+    </div>
+
+    <div class="receipt-actions">
+      <button type="button" class="delivery-track-btn" id="trackDeliveryBtn">🛵 Track on Delivery App</button>
+      <button type="button" class="secondary-btn" id="printReceiptBtn">🖨️ Print Receipt</button>
+      <button type="button" class="primary-btn" id="continueShoppingBtn">🛍️ Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- Live Delivery Tracking Modal -->
+<div class="modal" id="deliveryTrackModal">
+  <div class="modal-overlay" data-close="deliveryTrack"></div>
+  <div class="modal-card delivery-track-card">
+    <button class="modal-close" data-close="deliveryTrack">×</button>
+    
+    <div class="track-modal-head">
+      <div class="track-head-badge">🛵 LIVE AGRODELIVERY GPS</div>
+      <h2>Order Delivery Tracking</h2>
+      <p class="muted">Order <b id="trackOrderId">AM-829104</b> • Farm Dispatch in Progress</p>
+    </div>
+
+    <!-- Interactive Simulated GPS Map -->
+    <div class="track-map-container">
+      <div class="track-map-ambient"></div>
+      <div class="map-road-line"></div>
+      <div class="map-point map-origin">
+        <span class="map-point-icon">🌱</span>
+        <div class="map-point-label">
+          <strong>Farm Harvest Hub</strong>
+          <small>Packed & Inspected</small>
+        </div>
+      </div>
+      <div class="map-point map-rider moving-pulse" id="riderMapMarker">
+        <span class="map-point-icon rider-ico">🛵</span>
+        <div class="map-point-label">
+          <strong id="riderNameMap">Ramesh Kumar</strong>
+          <small id="riderDistanceMap">2.1 km away • 14 mins</small>
+        </div>
+      </div>
+      <div class="map-point map-dest">
+        <span class="map-point-icon">🏠</span>
+        <div class="map-point-label">
+          <strong>Delivery Address</strong>
+          <small id="trackDestAddress">Pune, Maharashtra</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stepper Progress -->
+    <div class="track-stepper">
+      <div class="track-step done" id="tStep1">
+        <div class="step-dot">✓</div>
+        <div class="step-label">
+          <b>Harvested & Packed</b>
+          <small>Quality Checked</small>
+        </div>
+      </div>
+      <div class="step-connector done" id="tConn1"></div>
+      <div class="track-step done" id="tStep2">
+        <div class="step-dot">✓</div>
+        <div class="step-label">
+          <b>Assigned to Rider</b>
+          <small>Cool Insulated Bag</small>
+        </div>
+      </div>
+      <div class="step-connector active" id="tConn2"></div>
+      <div class="track-step active" id="tStep3">
+        <div class="step-dot pulse">🛵</div>
+        <div class="step-label">
+          <b>Out for Delivery</b>
+          <small>On the way to you</small>
+        </div>
+      </div>
+      <div class="step-connector" id="tConn3"></div>
+      <div class="track-step" id="tStep4">
+        <div class="step-dot">🏠</div>
+        <div class="step-label">
+          <b>Doorstep Arrival</b>
+          <small>Est. ~14 mins</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver Card -->
+    <div class="rider-profile-box">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Delivery Partner" class="rider-photo" id="trackRiderPhoto">
+      <div class="rider-details">
+        <div class="rider-title-row">
+          <b id="trackRiderName">Ramesh Kumar</b>
+          <span class="rider-rating">4.9 ★ (1,420+ deliveries)</span>
+        </div>
+        <p class="rider-vehicle" id="trackRiderVehicle">🛵 Hero Electric Nyx • DL 04 EV 8892 • Green Eco Fleet</p>
+        <div class="rider-comm-buttons">
+          <button type="button" class="rider-btn call-btn" id="callRiderBtn">📞 Call Rider</button>
+          <button type="button" class="rider-btn chat-btn" id="chatRiderBtn">💬 Message</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-footer-actions">
+      <a href="https://play.google.com/store/apps/details?id=com.agromart.delivery" target="_blank" rel="noopener" class="primary-btn full-btn" id="openPartnerAppBtn">
+        📱 Open in AgroDelivery App for Live GPS Navigation
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Delivery App Download / QR Modal -->
+<div class="modal" id="deliveryAppModal">
+  <div class="modal-overlay" data-close="deliveryApp"></div>
+  <div class="modal-card download-modal-card">
+    <button class="modal-close" data-close="deliveryApp">×</button>
+    <div class="download-modal-header">
+      <div class="dl-app-icon">🛵</div>
+      <h2>Get AgroDelivery Mobile App</h2>
+      <p>Download our official delivery app for lightning-fast 15-minute delivery, live GPS tracking, and instant delivery notifications.</p>
+    </div>
+
+    <div class="download-modal-body">
+      <div class="download-qr-wrap">
+        <div id="deliveryAppQrCode" class="dl-qr-canvas"></div>
+        <small class="muted">Point phone camera to scan & download APK</small>
+      </div>
+
+      <div class="download-buttons-column">
+        <a href="https://play.google.com/store/apps/details?id=com.agromart.delivery" target="_blank" rel="noopener" class="store-badge-btn google-play-btn full-w">
+          <span class="store-icon">▶</span>
+          <div class="store-text">
+            <small>GET IT ON</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+
+        <a href="https://apps.apple.com/app/agromart-delivery/id123456789" target="_blank" rel="noopener" class="store-badge-btn app-store-btn full-w">
+          <span class="store-icon"></span>
+          <div class="store-text">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+
+        <button type="button" class="secondary-btn full-w" id="directApkDownloadBtn">
+          ⬇️ Direct APK Download (v2.4.0 • 18MB)
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- Add Produce Item Modal -->
+<div class="modal" id="addProduceModal">
+  <div class="modal-overlay" data-close="addProduce"></div>
+  <div class="modal-card add-produce-card">
+    <button class="modal-close" data-close="addProduce">×</button>
+    <div class="auth-title">
+      <span style="font-size:38px;display:block;margin-bottom:6px">🍎🥦</span>
+      <h2>Add Fruit or Vegetable</h2>
+      <p>List fresh farm produce in the AgroMart store catalogue</p>
+    </div>
+    <form id="addProduceForm">
+      <div class="form-grid">
+        <label>Item Name
+          <input id="addProduceName" type="text" placeholder="e.g. Kashmiri Apples or Palak" required>
+        </label>
+        <label>Category
+          <select id="addProduceCat" required>
+            <option value="Fruits">Fresh Fruits</option>
+            <option value="Vegetables">Fresh Vegetables</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-grid">
+        <label>Selling Price (₹)
+          <input id="addProducePrice" type="number" min="1" step="1" placeholder="e.g. 60" required>
+        </label>
+        <label>Regular / Old Price (₹)
+          <input id="addProduceOldPrice" type="number" min="1" step="1" placeholder="e.g. 80">
+        </label>
+      </div>
+      <div class="form-grid">
+        <label>Quantity / Selling Unit
+          <select id="addProduceUnit" required>
+            <option value="1 kg">1 kg</option>
+            <option value="500 g">500 g</option>
+            <option value="250 g">250 g</option>
+            <option value="1 pc">1 pc</option>
+            <option value="2 pcs">2 pcs</option>
+            <option value="3 pcs">3 pcs</option>
+            <option value="1 bunch">1 bunch</option>
+            <option value="200 g pack">200 g pack</option>
+            <option value="125 g pack">125 g pack</option>
+          </select>
+        </label>
+        <label>Produce Emoji
+          <input id="addProduceEmoji" type="text" value="🍎" maxlength="4" required>
+        </label>
+      </div>
+      <div class="form-grid">
+        <label>Stock Available (Units)
+          <input id="addProduceStock" type="number" min="1" value="30" required>
+        </label>
+        <label>Rating (★ 1.0 - 5.0)
+          <input id="addProduceRating" type="number" min="1" max="5" step="0.1" value="4.8" required>
+        </label>
+      </div>
+      <label>Product Image URL (Optional)
+        <input id="addProduceImg" type="url" placeholder="https://images.unsplash.com/photo-...">
+        <small class="muted" style="text-align:left;margin-top:2px;">Leave blank for a default farm-fresh photo matching the selected category.</small>
+      </label>
+      <label>Item Description & Origin
+        <textarea id="addProduceDesc" rows="2" placeholder="e.g. Freshly harvested organically grown produce direct from local farms." required></textarea>
+      </label>
+      <button type="submit" class="primary-btn full-btn" style="margin-top:10px;padding:13px;font-size:15px">
+        ✓ Add Item to Catalog
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Auth -->
+<div class="modal" id="authModal"><div class="modal-overlay" data-close="auth"></div><div class="modal-card auth-card"><button class="modal-close" data-close="auth">×</button>
+<div id="guestAuth"><div class="auth-title">👤<h2>AgroMart Account</h2><p>Login or create an account to shop.</p></div>
+<div class="tabs"><button type="button" class="tab active" data-tab="login">Login</button><button type="button" class="tab" data-tab="register">Create Account</button></div>
+<form id="loginForm"><label>Gmail ID<input id="loginEmail" type="email" placeholder="yourname@gmail.com" required></label><label>Password<input id="loginPassword" type="password" required></label><button class="primary-btn full-btn">Login</button></form>
+<form id="registerForm" class="hidden"><div class="form-grid"><label>Full Name<input id="regName" required></label><label>Age<input id="regAge" type="number" min="1" max="120" required></label></div><label>Gmail ID<input id="regEmail" type="email" placeholder="yourname@gmail.com" required></label><label>Mobile Number<input id="regMobile" pattern="[0-9]{10}" required></label><label>Address<textarea id="regAddress" required></textarea></label><div class="form-grid"><label>Password<input id="regPassword" type="password" minlength="6" required></label><label>Confirm Password<input id="regConfirm" type="password" minlength="6" required></label></div><button class="primary-btn full-btn">Create Account</button></form>
+<p class="demo-note">Demo website: account data is stored in this browser only. Do not use a real password.</p></div>
+<div id="userAuth" class="hidden"><div class="auth-title">🌾<h2>My AgroMart Account</h2><p id="welcomeUser"></p></div><div class="profile" id="profile"></div><button type="button" class="primary-btn full-btn" id="accountCheckout">Continue to Checkout</button><button type="button" class="secondary-btn full-btn" id="logoutBtn">Logout</button></div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+<script src="qrcode.min.js"></script>
+<script src="script.js"></script>
+<!-- Performance: Suppress harmless console warnings and handle errors -->
+<script>
+  // Suppress Razorpay preload warnings (expected behavior)
+  const originalWarn = console.warn;
+  console.warn = function(...args) {
+    if (args[0]?.includes?.('preloaded using link preload')) return;
+    originalWarn.apply(console, args);
+  };
+  
+  // Add fallback for failed images
+  document.addEventListener('error', function(e) {
+    if (e.target.tagName === 'IMG') {
+      e.target.style.backgroundColor = '#f0f0f0';
+      e.target.alt = '🌾 Product Image';
+      e.target.title = 'Image unavailable';
+    }
+  }, true);
+  
+  // Preload critical Unsplash images
+  const criticalImages = document.querySelectorAll('img[src*="unsplash.com"][loading="eager"]');
+  criticalImages.forEach(img => {
+    img.addEventListener('error', () => {
+      img.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e0e0e0%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2240%22%3E🌾%3C/text%3E%3C/svg%3E';
+    });
+  });
+</script>
+<script async src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>
