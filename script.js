@@ -294,6 +294,85 @@ function renderProducts(){
     </article>
   `).join("")||"<p>No products found.</p>";
 }
+
+function initAssistant(){
+  const launcher=$("assistantLauncher"), dialog=$("assistantDialog"), close=$("assistantClose"), clear=$("assistantClear"), form=$("assistantForm"), input=$("assistantInput"), messages=$("assistantMessages"), suggestions=$("assistantSuggestions");
+  if(!launcher||!dialog||!form)return;
+  const assistantState={history:[]};
+  const categoryNames=()=>categories.map(c=>c.name);
+  const catalogSummary=()=>categoryNames().join(", ");
+  const normalize=value=>String(value||"").toLowerCase().replace(/[^\w\s-]/g," ");
+  const findCategory=(text)=>categories.find(c=>normalize(text).includes(normalize(c.name)));
+  const findProducts=(text)=>{
+    const q=normalize(text);
+    return products.filter(p=>q.includes(normalize(p.name))||normalize(p.name).split(/\s+/).some(word=>word.length>3&&q.includes(word))).slice(0,4);
+  };
+  function addMessage(text,kind="assistant"){
+    const el=document.createElement("div"); el.className=`assistant-message ${kind}`; el.textContent=text; messages.appendChild(el); messages.scrollTop=messages.scrollHeight;
+  }
+  function showCategory(category){
+    if(category.name==="Fruits"||category.name==="Vegetables"){
+      produceFilterState.value=category.name;
+      document.querySelectorAll(".produce-tab").forEach(x=>x.classList.toggle("active",x.dataset.produceFilter===category.name));
+      renderFreshProduce(); $("fresh-produce").scrollIntoView({behavior:"smooth"});
+    }else{$("categoryFilter").value=category.name; renderProducts(); $("products").scrollIntoView({behavior:"smooth"});}
+    closeAssistant();
+  }
+  function openProduct(product){window.showProduct(product.id);closeAssistant();}
+  function setSuggestions(items){
+    suggestions.innerHTML="";
+    items.forEach(label=>{const button=document.createElement("button");button.type="button";button.className="assistant-suggestion";button.textContent=label;button.onclick=()=>{input.value=label;form.requestSubmit();};suggestions.appendChild(button);});
+  }
+  function answer(raw){
+    const text=normalize(raw), category=findCategory(raw), matched=findProducts(raw);
+    const exactProducts=products.filter(p=>text.includes(normalize(p.name)));
+    if(exactProducts.length){
+      return `I found ${exactProducts.slice(0,4).map(p=>`${p.name} (${money(p.price)} / ${p.unit||"pack"})`).join(", ")}. Use the product cards to view details or add an item to your cart.`;
+    }
+    if(category){
+      const categoryProducts=products.filter(p=>p.cat===category.name);
+      return `For ${category.name}: ${category.advantages.join(" and ")}. AgroMart currently has ${categoryProducts.length} listed item${categoryProducts.length===1?"":"s"} in this category. I can filter them for you below.`;
+    }
+    if(matched.length){
+      return `I found ${matched.map(p=>`${p.name} (${money(p.price)} / ${p.unit||"pack"})`).join(", ")}. Use the product cards to view details or add an item to your cart.`;
+    }
+    if(/soil|prepare|preparation|land/.test(text))return "For soil preparation, test pH and nutrients first, remove weeds, loosen the topsoil, and mix in mature compost or well-rotted manure. Match amendments to your crop and avoid fresh manure near roots.";
+    if(/crop|select|choose|season|weather|monsoon|winter|summer/.test(text))return "Choose crops suited to your soil, water supply, local season, and market. Stagger sowing, protect seedlings from heavy rain or heat, and check the crop’s expected maturity before planting.";
+    if(/seed|sow|sowing|germinat/.test(text))return "Use clean, viable seed, follow the packet’s depth and spacing, keep the seedbed evenly moist, and thin crowded seedlings. AgroMart’s Seeds category includes the live catalog items currently available.";
+    if(/fertil|manure|compost|nutrient|npk/.test(text))return "Use a soil test to guide fertilizer rates. Compost and well-rotted manure build organic matter; apply balanced nutrients in split doses and keep granular fertilizer away from stems. Never exceed the label rate.";
+    if(/irrigat|water|drip|sprinkl/.test(text))return "Water deeply and at the root zone, preferably early morning. Drip irrigation reduces evaporation; check filters and emitters, avoid waterlogging, and adjust frequency for soil, crop stage, and weather.";
+    if(/weed/.test(text))return "Control weeds early with shallow hoeing, mulch, hand removal, or approved methods. Prevent seed set and avoid damaging crop roots; keep tools clean between plots.";
+    if(/pest|disease|fung|insect|neem/.test(text))return "Inspect leaf undersides and new growth regularly, isolate affected plants, improve airflow, and start with physical removal or approved neem/biological controls. Identify the pest or disease before using any product and follow its label.";
+    if(/organic|natural|sustainab/.test(text))return "Organic care combines compost, crop rotation, mulch, beneficial insects, clean seed, and non-chemical controls. Keep records and use only inputs permitted by your local organic standard.";
+    if(/harvest|storage|store|postharvest/.test(text))return "Harvest at the crop’s recommended maturity during cool, dry hours. Handle produce gently, remove damaged pieces, cool leafy crops quickly, and store each crop at its suitable temperature and humidity.";
+    if(/tool|equipment|sprayer/.test(text))return "Choose tools for your crop and scale: hand tools for beds, sprayers for targeted applications, and irrigation equipment for consistent water delivery. Clean, dry, and safely store tools after use.";
+    if(/produce|fruit|vegetable|fresh/.test(text))return "Fresh Fruits and Fresh Vegetables are available in the Produce section. Prices and units are shown on each live product card, and you can filter the produce tabs.";
+    if(/search|browse|category|catalog|product|price|unit/.test(text))return `Search the Products section by name or category, then sort by price or rating. Current categories are: ${catalogSummary()}.`;
+    if(/offer|coupon|promo|discount|referral/.test(text))return "At checkout, try AGRO10, AGRO20, or FRIEND150 in the discount box. The cart also applies its available order discount when eligible.";
+    if(/cart|add|checkout|order|invoice|receipt/.test(text))return "Use Add to Cart on any product, open the cart button to adjust quantities, then Proceed to Checkout. After placing an order, the confirmation includes order and invoice details.";
+    if(/deliver|track|rider|app/.test(text))return "AgroMart offers Standard or Express delivery. The delivery-app section links to the app and QR code, while Track Delivery in the order confirmation opens the built-in tracking view.";
+    if(/pay|payment|upi|razorpay|card|cash|cod|bank|wallet/.test(text))return "Checkout supports Razorpay, UPI QR/apps/ID, cards, net banking, wallets, and cash on delivery. Select a method in the payment panel and follow its on-screen verification.";
+    if(/account|login|register|profile/.test(text))return "Use Login in the header to create or access a browser-only AgroMart account. Account details and cart data stay in this browser for this demo site.";
+    return "I’m AgroGuide, AgroMart’s built-in client-side assistant (not a live LLM). Ask about soil, crops, seeds, fertilizers, irrigation, pests, harvesting, products, cart, payment, or delivery.";
+  }
+  function respond(raw){
+    const question=raw.trim(); if(!question)return;
+    addMessage(question,"user"); assistantState.history.push({role:"user",text:question});
+    const reply=answer(question);
+    addMessage(reply); assistantState.history.push({role:"assistant",text:reply});
+    const category=findCategory(question), matched=findProducts(question);
+    setSuggestions(category?[`Show ${category.name} products`,"How do I prepare soil?","What fertilizer should I use?"]:matched.length?matched.slice(0,3).map(p=>`Show ${p.name}`):["What should I plant this season?","How do I control pests?","Help with delivery"]);
+    if(category){const button=[...suggestions.children][0];button.onclick=()=>showCategory(category);}
+    if(matched.length)[...suggestions.children].forEach((button,index)=>{if(button.textContent.startsWith("Show ")){const product=matched[index];if(product)button.onclick=()=>openProduct(product);}});
+  }
+  function openAssistant(){dialog.hidden=false;launcher.setAttribute("aria-expanded","true");input.focus();}
+  function closeAssistant(){dialog.hidden=true;launcher.setAttribute("aria-expanded","false");launcher.focus();}
+  function clearConversation(){messages.innerHTML="";assistantState.history=[];addMessage("Hi! I’m AgroGuide, a built-in client-side farming and shopping guide. What would you like to know?");setSuggestions(["How do I prepare soil?","Show Seeds products","Help with delivery"]);input.focus();}
+  launcher.onclick=openAssistant; close.onclick=closeAssistant; clear.onclick=clearConversation;
+  form.onsubmit=e=>{e.preventDefault();const value=input.value;input.value="";respond(value);};
+  dialog.addEventListener("keydown",e=>{if(e.key==="Escape")closeAssistant();});
+  clearConversation();
+}
 function addToCart(id){let p=products.find(x=>x.id===id), item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({id,qty:1});saveCart();renderCart();toast(p.name+" added to cart.")}
 function changeQty(id,d){let i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart();renderCart()}
 function totals(){
@@ -1125,6 +1204,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   renderCart();
   updateAccount();
   setupPaymentListeners();
+  initAssistant();
 
   $("searchInput").oninput=renderProducts;
   $("categoryFilter").onchange=renderProducts;
@@ -1486,4 +1566,3 @@ document.addEventListener("keydown",e=>{
   closeModal("deliveryTrackModal");
   closeModal("deliveryAppModal");
 });
-
